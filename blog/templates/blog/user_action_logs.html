@@ -1,0 +1,8 @@
+<h3>Recent User Actions</h3>
+<ul>
+    {% for log in logs %}
+        <li>{{ log.action }} - {{ log.path }} ({{ log.execution_time|floatformat:2 }}s) at {{ log.timestamp }}</li>
+    {% empty %}
+        <li>No recent actions.</li>
+    {% endfor %}
+</ul>

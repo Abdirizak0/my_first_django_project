@@ -1,26 +1,38 @@
 # my_first_django_project
 
-This is a simple blog application built with Django as part of a learning project.
+This is a full-stack blog application built with Django, featuring user authentication, role-based access control, and a RESTful API.
 
 ## Features
 
-- User authentication (login/logout)
-- Create, Read, Update, and Delete blog posts
-- Pagination of blog posts
+- User authentication (login, logout, registration)
+- Role-based access control (admin, author, reader)
+- CRUD operations for blog posts
+- Comment system
+- RESTful API using Django Rest Framework
 - Responsive design using Bootstrap
 
-## Installation
+## Technologies Used
+
+- Python
+- Django
+- Django Rest Framework
+- SQLite (development) / PostgreSQL (production)
+- HTML/CSS/JavaScript
+- Bootstrap
+- Gunicorn (for deployment)
+
+## Setup and Installation
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/my_first_django_project.git
-   cd my_first_django_project
+   git clone https://github.com/yourusername/django-blog-project.git
+   cd django-blog-project
    ```
 
 2. Create a virtual environment and activate it:
    ```
    python -m venv venv
-   source venv/bin/activate  # On Windows, use: venv\Scripts\activate
+   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
    ```
 
 3. Install the required packages:
@@ -28,7 +40,7 @@ This is a simple blog application built with Django as part of a learning projec
    pip install -r requirements.txt
    ```
 
-4. Apply the database migrations:
+4. Run migrations:
    ```
    python manage.py migrate
    ```
@@ -43,18 +55,36 @@ This is a simple blog application built with Django as part of a learning projec
    python manage.py runserver
    ```
 
-7. Open your browser and navigate to `http://127.0.0.1:8000/`
+7. Visit `http://127.0.0.1:8000` in your browser to see the application.
 
-## Usage
+## Deployment
 
-- To access the admin panel, go to `http://127.0.0.1:8000/admin/` and log in with your superuser credentials.
-- To create a new blog post, log in and click on "New Post" in the navigation bar.
-- To edit or delete a post, go to the post detail page while logged in as the author of the post.
+This project is configured for deployment on Heroku:
+
+1. Create a new Heroku app.
+2. Set the following config vars in Heroku:
+   - `DJANGO_SECRET_KEY`: Your Django secret key
+   - `DJANGO_DEBUG`: Set to 'False'
+   - `DJANGO_ALLOWED_HOSTS`: Your app's domain name
+3. Add the PostgreSQL addon to your Heroku app.
+4. Deploy the code to Heroku.
+5. Run migrations on Heroku:
+   ```
+   heroku run python manage.py migrate
+   ```
+
+## Testing
+
+To run the tests, use the following command:
+
+```
+python manage.py test
+```
 
 ## Contributing
 
-This is a learning project, but if you'd like to contribute, please feel free to submit a pull request.
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ## License
 
-This project is open source and available under the [MIT License](LICENSE).
+[MIT](https://choosealicense.com/licenses/mit/)
