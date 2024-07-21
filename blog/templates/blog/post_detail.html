@@ -8,4 +8,43 @@
         <a href="{% url 'post_update' post.pk %}" class="btn btn-secondary">Edit</a>
         <a href="{% url 'post_delete' post.pk %}" class="btn btn-danger">Delete</a>
     {% endif %}
+
+    <h2 class="mt-4">Comments</h2>
+    {% for comment in post.comments.all %}
+        <div class="card mb-2">
+            <div class="card-body">
+                <p class="card-text">{{ comment.content }}</p>
+                <p class="card-text"><small class="text-muted">By {{ comment.author }} on {{ comment.created_at }}</small></p>
+            </div>
+        </div>
+    {% empty %}
+        <p>No comments yet.</p>
+    {% endfor %}
+
+    
+    <h3 class="mt-4">Related Posts</h3>
+    {% for related_post in related_posts %}
+        <div class="card mb-2">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <a href="{% url 'post_detail' related_post.pk %}">{{ related_post.title }}</a>
+                </h5>
+                <p class="card-text">{{ related_post.content|truncatewords:30 }}</p>
+            </div>
+        </div>
+    {% empty %}
+        <p>No related posts found.</p>
+    {% endfor %}
+    
+
+    {% if user.is_authenticated %}
+        <h3 class="mt-4">Add a comment</h3>
+        <form method="post" action="{% url 'add_comment' post.pk %}">
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            <button type="submit" class="btn btn-primary">Submit Comment</button>
+        </form>
+    {% else %}
+        <p>Please <a href="{% url 'login' %}">log in</a> to add a comment.</p>
+    {% endif %}
 {% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Dashboard</h1>
+    <canvas id="postsChart"></canvas>
+
+    <script>
+        var ctx = document.getElementById('postsChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: {{ months|safe }},
+                datasets: [{
+                    label: 'Number of Posts',
+                    data: {{ post_counts|safe }},
+                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        stepSize: 1
+                    }
+                },
+                responsive: true,
+                title: {
+                    display: true,
+                    text: 'Posts per Month'
+                }
+            }
+        });
+    </script>
+{% endblock content %}

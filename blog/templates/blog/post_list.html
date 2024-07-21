@@ -1,7 +1,16 @@
 {% extends 'base.html' %}
 
+
 {% block content %}
     <h1>Blog Posts</h1>
+    <form class="mb-4" method="get">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search posts..." name="q" value="{{ request.GET.q }}">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </div>
+        </div>
+    </form>
     {% for post in posts %}
         <div class="card mb-3">
             <div class="card-body">
@@ -12,7 +21,7 @@
             </div>
         </div>
     {% empty %}
-        <p>No posts yet.</p>
+        <p>No posts found.</p>
     {% endfor %}
 
     {% if is_paginated %}
