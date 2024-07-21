@@ -27,6 +27,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'fallback-secret-key')
 ALLOWED_HOSTS = [
     'abdiblog.herokuapp.com',
     '8000-abdirizak0-myfirstdjang-sltkbkkjbd5.ws-eu115.gitpod.io'
+    '127.0.0.1', 'localhost'
 ]
 
 # Application definition
