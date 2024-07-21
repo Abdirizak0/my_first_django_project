@@ -24,8 +24,7 @@ DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'fallback-secret-key')
 
-ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', 'localhost,127.0.0.1,8000-abdirizak0-myfirstdjang-sltkbkkjbd5.ws-eu115.gitpod.io').split(',')
-
+ALLOWED_HOSTS = ['abdiblog.herokuapp.com', 'localhost']
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
